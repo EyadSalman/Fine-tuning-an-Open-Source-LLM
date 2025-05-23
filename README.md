@@ -1,6 +1,6 @@
-# 🧠 Fine-Tuning an Open Source LLM using LoRA
+# 🧠 Fine-Tuning an Open Source LLM using Lora
 
-This project presents a complete pipeline to fine-tune a compact but powerful open-source language model — **TinyLlama-1.1B-Chat-v1.0** — using **LoRA (Low-Rank Adaptation)**. We train it on a public dataset of inspirational quotes to generate human-like motivational responses with minimal compute.
+This project demonstrates how to fine-tune the open-source language model **TinyLlama-1.1B-Chat-v1.0** using **LoRA (Low-Rank Adaptation)**. The model is trained on a public dataset of inspirational quotes to enable it to generate motivational responses efficiently on low-resource devices.
 
 > Example Output:  
 > **"You must be very brave, though I can only be very foolish.”"I think the difference between people who are brave and those who are foolish is that the brave know when something is foolish and the foolish don't."**
@@ -9,41 +9,63 @@ This project presents a complete pipeline to fine-tune a compact but powerful op
 
 ## 🎯 Objective
 
-- Fine-tune a small-scale LLM with low compute using 4-bit quantization and LoRA
-- Train on a simple instruction-style dataset (`Abirate/english_quotes`)
-- Evaluate model performance using loss, perplexity, and qualitative generation
-- Demonstrate instruction-tuned behavior through inference prompts
+- Fine-tune a small-scale open-source LLM using LoRA and 4-bit quantization
+- Use the Hugging Face dataset `Abirate/english_quotes`
+- Evaluate using loss, perplexity, and sample generations
+- Use Hugging Face `Trainer` API for training and evaluation
 
 ---
 
 ## 📚 Dataset
 
-- [Abirate/english_quotes](https://huggingface.co/datasets/Abirate/english_quotes)  
-- 1000+ motivational quotes
+- **Name:** [Abirate/english_quotes](https://huggingface.co/datasets/Abirate/english_quotes)
+- **Description:** 1000+  motivational quotes
+- **Sample Format:**
 
+- 
+---
+
+## 🧠 Model Used
+
+- **Model:** `TinyLlama/TinyLlama-1.1B-Chat-v1.0`
+- **Size:** ~1.1 billion parameters
+- **Architecture:** Decoder-only transformer
+- **Format:** Hugging Face Transformers
+- **Finetuning Method:** LoRA (Parameter-Efficient Fine-Tuning)
+- **Quantization:** 4-bit (`bitsandbytes` with NF4 quantization)
 
 ---
 
-## 🧠 Model & Training Setup
+## 🔨 Training Pipeline
 
-- **Base Model:** `TinyLlama/TinyLlama-1.1B-Chat-v1.0`
-- **Parameters:** 1.1B
-- **Quantization:** 4-bit (NF4, with `bitsandbytes`)
-- **Fine-tuning method:** LoRA via `peft`
-
-### LoRA Config
-- `r = 16`
-- `lora_alpha = 32`
-- `dropout = 0.1`
+### ⚙️ LoRA Configuration
+- Rank `r = 16`
+- Alpha = 32
+- Dropout = 0.1
 - Target Modules: `q_proj`, `v_proj`, `k_proj`, `o_proj`
 
+### 🛠️ Fine-Tuning
+- Load model in 4-bit using `BitsAndBytesConfig`
+- Apply LoRA via `peft`
+- Format and tokenize quotes to instruction-response format
+- Train using Hugging Face `Trainer` API
+
 ---
 
-## 📂 Project Structure
-.
-├── FinetuningLLM.ipynb      # Full training notebook
-├── outputs/                 # Saved model checkpoints
-├── README.md                # Project documentation
-└── requirements.txt         # Library dependencies
+## 📈 Evaluation
+
+- **Loss:** Language modeling cross-entropy
+- **Perplexity:** Computed from average training loss
+- **Output Samples:** Generated using greedy decoding and sampling
+- **Visualization:** Training loss plotted using `matplotlib`
+
+---
+
+## 📦 Installation
+
+Ensure Python 3.8+ is installed, then run:
+
+```bash
+pip install bitsandbytes accelerate transformers datasets peft evaluate matplotlib
 
 
