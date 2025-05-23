@@ -47,10 +47,3 @@ This project presents a complete pipeline to fine-tune a compact but powerful op
 └── requirements.txt         # Library dependencies
 
 
-## 📦 Installation
-
-```bash
-pip install bitsandbytes accelerate transformers datasets peft evaluate matplotlib
-
-
-
