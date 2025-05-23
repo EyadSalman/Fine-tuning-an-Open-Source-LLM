@@ -39,16 +39,18 @@ This project presents a complete pipeline to fine-tune a compact but powerful op
 
 ---
 
-## 📦 Installation
-
-```bash
-pip install bitsandbytes accelerate transformers datasets peft evaluate matplotlib
-
 ## 📂 Project Structure
 .
 ├── FinetuningLLM.ipynb      # Full training notebook
 ├── outputs/                 # Saved model checkpoints
 ├── README.md                # Project documentation
 └── requirements.txt         # Library dependencies
+
+
+## 📦 Installation
+
+```bash
+pip install bitsandbytes accelerate transformers datasets peft evaluate matplotlib
+
 
 
