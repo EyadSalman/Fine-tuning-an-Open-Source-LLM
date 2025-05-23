@@ -20,7 +20,6 @@ This project demonstrates how to fine-tune the open-source language model **Tiny
 
 - **Name:** [Abirate/english_quotes](https://huggingface.co/datasets/Abirate/english_quotes)
 - **Description:** 1000+  motivational quotes
-- **Sample Format**
 ---
 
 ## 🧠 Model Used
